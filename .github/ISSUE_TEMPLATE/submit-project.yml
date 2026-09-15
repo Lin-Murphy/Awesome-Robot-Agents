@@ -1,0 +1,25 @@
+name: Suggest a project
+description: Share an LLM/VLM robot-arm manipulation project or original author post.
+title: "[Project]: "
+body:
+  - type: input
+    id: source
+    attributes:
+      label: Original project link
+      description: Author repository, paper, documentation, or original post.
+    validations:
+      required: true
+  - type: textarea
+    id: reason
+    attributes:
+      label: Why should it be included?
+      description: One or two sentences about the model's role in a robot-arm task. Unknown details are fine.
+    validations:
+      required: true
+  - type: textarea
+    id: context
+    attributes:
+      label: Useful context (optional)
+      description: Setup guide, media, limitations, or your relationship to the project.
+    validations:
+      required: false

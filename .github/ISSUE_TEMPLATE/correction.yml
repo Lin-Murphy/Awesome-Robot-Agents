@@ -1,0 +1,17 @@
+name: Suggest a correction
+description: Fix a claim, release status, or broken link.
+title: "[Correction]: "
+body:
+  - type: input
+    id: entry
+    attributes:
+      label: Entry link or project name
+    validations:
+      required: true
+  - type: textarea
+    id: change
+    attributes:
+      label: What needs correction?
+      description: Explain the problem and link supporting evidence when available.
+    validations:
+      required: true
