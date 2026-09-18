@@ -18,29 +18,43 @@ Entries identify the robot or simulator, execution interface, available code or 
 
 ## Robot-arm projects
 
-### Robocurve Astra arm comparison
+### GPT-6 Astra as an Embodied Policy
 
-GPT-6 Astra plans and calls motion skills through Inspect Robots on real YAM arms. The [report and trial records](https://openai.robocurve.org/gpt-6-astra/) describe a two-task comparison with Claude models. The authors report 19/20 bowl-task completions and 2/20 puzzle-task completions for Astra; these tasks do not establish general robot competence.
+A comparative study of GPT-6 Astra as a direct robot policy and as a high-level reviewer or correction layer for the learned `π₀.₅` policy. The public evaluation covers RoboDojo tasks and compares direct end-effector control with hybrid System-2 reasoning plus System-1 sensorimotor skills. The repository reports Astra Direct at 26% success with a mean score of 37.81, and the hybrid policy at 48% success with a mean score of 62.60; GPT corrections were applied to 14.4% of executed control steps. These are author-reported evaluation results across selected cases, not evidence of general robot competence, and the public release does not represent every deployment or evaluation artifact.
 
-**Source:** [Report and trial records](https://openai.robocurve.org/gpt-6-astra/) · [Video](https://openai.robocurve.org/gpt-6-astra/video/bowl-astra-vs-fable51-cost.mp4)
+**Source:** [Repository and code](https://github.com/anonymous-report-421/GPT-as-Policy) · [Project page](https://anonymous-report-421.github.io/public-website/) · [Astra embodied-AI index](https://github.com/zjwzcx/Awesome-Astra-Embodied-AI)
 
-<p align="center"><a href="https://openai.robocurve.org/gpt-6-astra/video/bowl-astra-vs-fable51-cost.mp4"><img src="assets/robocurve-astra.gif" alt="Robocurve Astra bowl-task GIF preview" width="820"></a></p>
+<p align="center"><a href="https://anonymous-report-421.github.io/public-website/?view=1"><img src="assets/gpt6-astra-hybrid-control.png" alt="GPT-6 Astra hybrid control correcting a robot action" width="900"></a></p>
 
-### GPT-Policy-Eval
+*Figure: GPT-6 Astra correction in the hybrid-control loop, with task state, decision rationale, command details, and recorded end-effector control. User-provided image based on the project presentation.*
 
-An author-reported real-robot preview of GPT-6 Astra using a demonstration video and live visual feedback for plug insertion. The [project and videos](https://github.com/cheng-haha/GPT-Policy-Eval) are public; code and systematic evaluation are still planned. The checked README does not specify the robot model or exact action interface.
+### GPT-Policy — In-Context Robot Learning with VLM Agents
 
-**Source:** [Project](https://github.com/cheng-haha/GPT-Policy-Eval) · [Video](https://github.com/cheng-haha/GPT-Policy-Eval/raw/refs/heads/main/assets/plug-insertion-top-and-right-wrist.mp4)
+An open-source closed-loop framework for in-context robot learning with VLM agents. The agent can use demonstrations, target images, interaction history, and execution feedback without gradient updates or task-specific parameter changes. The public repository provides adapters for ARX X5 and I2RT/YAM robot arms, structured robot-tool actions, IK checks, gripper and waypoint control, feedback-driven replanning, and append-only run recording. The paper reports author-run real-robot results across six tasks; the public tree does not include all deployment hosts, private prompts, calibration, run recordings, or the complete evaluation environment.
 
-<p align="center"><a href="https://github.com/cheng-haha/GPT-Policy-Eval/raw/refs/heads/main/assets/plug-insertion-top-and-right-wrist.mp4"><img src="assets/gpt-policy-eval.gif" alt="GPT-Policy-Eval plug-insertion GIF preview" width="820"></a></p>
+**Source:** [Repository and code](https://github.com/cheng-haha/GPT-Policy) · [Paper](https://arxiv.org/abs/2609.19138) · [Project page](https://cheng-haha.github.io/GPT-Policy/)
 
-### Show-Harness
+<p align="center"><a href="https://cheng-haha.github.io/GPT-Policy/"><img src="assets/gpt-policy-context.png" alt="GPT-Policy context inputs and VLM-guided robot action outcome" width="900"></a></p>
 
-A released, model-flexible VLM harness for robot-arm manipulation. The VLM selects bounded action units; robot-specific interpreters turn them into motion for Franka or Piper arms, or for supported simulators. The authors provide [code, setup guides, and model/data links](https://github.com/showlab/Show-Harness). A public run guide is a starting point, not a maintainer-verified hardware result.
+*Figure: GPT-Policy combines task information with human video, robot video and action, goal images, interaction feedback, and self-history to guide robot actions. User-provided image based on the project presentation.*
+
+### Cortex / InternVLA-M1.5 — A Bidirectionally Aligned Embodied Agent Framework for Long-Horizon Manipulation
+
+An embodied-agent framework for long-horizon manipulation that aligns a high-level System-2 planning agent with low-level execution through a shared subtask interface. The project describes 32 canonical manipulation skill primitives and releases long-horizon subtask annotations across robot datasets and benchmarks. Dataset coverage, model results, and real-robot claims should be checked against the project paper and released evaluation setup.
+
+**Source:** [Repository and code](https://github.com/InternRobotics/Cortex)
+
+<p align="center"><a href="https://github.com/InternRobotics/Cortex"><img src="assets/cortex-long-horizon-manipulation.png" alt="Cortex bidirectionally aligned embodied agent framework for long-horizon manipulation" width="900"></a></p>
+
+*Figure: Cortex demonstrations and system overview for long-horizon robot manipulation. User-provided image based on the project presentation.*
+
+### Show-Harness — Just a VLM Agent Can Play Robots
+
+A released, model-flexible VLM harness for robot-arm manipulation. The VLM selects bounded action units; robot-specific interpreters turn them into motion for Franka or Piper arms, or for supported simulators. The recent public release adds the GUMI data collectors, plugins, training pipeline, LoRA adapters, and demonstration data. The authors provide [code, setup guides, and model/data links](https://github.com/showlab/Show-Harness). A public run guide and reported zero-shot or fine-tuned results are starting points, not maintainer-verified hardware evidence.
 
 **Source:** [Project and code](https://github.com/showlab/Show-Harness)
 
-<p align="center"><a href="https://github.com/showlab/Show-Harness"><img src="assets/show-harness.png" alt="Show-Harness: the VLM thinks and the robot moves" width="820"></a></p>
+<p align="center"><a href="https://github.com/showlab/Show-Harness"><img src="assets/show-harness.png" alt="Show-Harness: the VLM thinks and the robot moves" width="900"></a></p>
 
 ### Pigey — Physical Agency
 
@@ -48,7 +62,7 @@ A closed-loop VLM orchestrator that routes high-level reasoning through frozen r
 
 **Source:** [Project and demos](https://lianegalanti.github.io/Pigey/)
 
-<p align="center"><a href="https://lianegalanti.github.io/Pigey/"><img src="assets/pigey-scene-memory.png" alt="Pigey scene-memory demonstration: memorize five dolls, look away during a shuffle, then restore their original positions" width="820"></a></p>
+<p align="center"><a href="https://lianegalanti.github.io/Pigey/"><img src="assets/pigey-scene-memory.png" alt="Pigey scene-memory demonstration: memorize five dolls, look away during a shuffle, then restore their original positions" width="900"></a></p>
 
 *Project-page screenshot supplied by the contributor. [Author-reported demonstration](https://lianegalanti.github.io/Pigey/): remember five dolls’ positions, look away while they are shuffled, then restore the scene using the stored positions.*
 
@@ -58,12 +72,30 @@ An open agentic framework for coding agents to improve real-world robot policies
 
 **Source:** [Repository](https://github.com/NVlabs/ENPIRE)
 
-<p align="center"><a href="https://github.com/NVlabs/ENPIRE"><img src="assets/enpire-workflow.png" alt="ENPIRE workflow: coding agent, tool APIs, environment, and policy improvement" width="820"></a></p>
+<p align="center"><a href="https://github.com/NVlabs/ENPIRE"><img src="assets/enpire-workflow.png" alt="ENPIRE workflow: coding agent, tool APIs, environment, and policy improvement" width="900"></a></p>
+
+### GPT-Policy-Eval
+
+An author-reported real-robot preview of GPT-6 Astra using a demonstration video and live visual feedback for plug insertion. The [project and videos](https://github.com/cheng-haha/GPT-Policy-Eval) are public; code and systematic evaluation are still planned. The checked README does not specify the robot model or exact action interface.
+
+**Source:** [Project](https://github.com/cheng-haha/GPT-Policy-Eval) · [Video](https://github.com/cheng-haha/GPT-Policy-Eval/raw/refs/heads/main/assets/plug-insertion-top-and-right-wrist.mp4)
+
+<p align="center"><a href="https://github.com/cheng-haha/GPT-Policy-Eval/raw/refs/heads/main/assets/plug-insertion-top-and-right-wrist.mp4"><img src="assets/gpt-policy-eval.gif" alt="GPT-Policy-Eval plug-insertion GIF preview" width="900"></a></p>
+
+### Robocurve Astra arm comparison
+
+GPT-6 Astra plans and calls motion skills through Inspect Robots on real YAM arms. The [report and trial records](https://openai.robocurve.org/gpt-6-astra/) describe a two-task comparison with Claude models. The authors report 19/20 bowl-task completions and 2/20 puzzle-task completions for Astra; these tasks do not establish general robot competence.
+
+**Source:** [Report and trial records](https://openai.robocurve.org/gpt-6-astra/) · [Video](https://openai.robocurve.org/gpt-6-astra/video/bowl-astra-vs-fable51-cost.mp4)
+
+<p align="center"><a href="https://openai.robocurve.org/gpt-6-astra/video/bowl-astra-vs-fable51-cost.mp4"><img src="assets/robocurve-astra.gif" alt="Robocurve Astra bowl-task GIF preview" width="900"></a></p>
 
 ## Tools and evaluation
 
 Tools for connecting or evaluating robot agents.
 
+- [FailBench](https://arxiv.org/abs/2609.03611) — benchmark for VLM-based robot failure detection; tests whether VLMs can judge manipulation success across diverse real and simulated sources. The best reported mean balanced accuracy is 0.77, with performance near chance on contact-intensive tasks.
+- [ENACT](https://enact-embodied-cognition.github.io/) — benchmark and dataset for evaluating VLM embodied cognition through forward and inverse world modeling of egocentric interaction. It includes code, data, a viewer, and a leaderboard; its scope is broader mobile manipulation and world modeling rather than a robot-arm execution interface.
 - [Inspect Robots](https://github.com/robocurve/inspect-robots) — connects an agent or policy to a robot, task, and run logs. Its mock quick start checks the pipeline, not physical manipulation; see the [LLM-agent guide](https://github.com/robocurve/inspect-robots#drive-the-robot-with-an-llm).
 - [ROS MCP Server](https://github.com/robotmcp/ros-mcp-server) — exposes ROS topics, services, and actions to an MCP client. It provides an interface, not the robot controller itself.
 - [StationeryBench](https://github.com/robocurve/stationerybench) — a benchmark and scoring protocol for bimanual stationery tasks. Its scripted mock is not a robot success result.
@@ -94,7 +126,7 @@ Author-created demonstrations; code and technical details are linked when availa
 | <img src="assets/yingwu-astra-real2sim.png" alt="Astra video reconstruction and robot-arm control" width="420"> | 应物而无累 — <a href="https://www.rednote.com/discovery/item/6aa8985a000000002a02f022?source=webshare&xhsshare=pc_web&xsec_token=ABVaBndlmLfLukTWqmYV_Z_deDleX-ebQ1EIyqCo1cfy4=&xsec_source=pc_share">Original post</a> | Video-to-simulation asset reconstruction followed by robot-arm control |
 | <img src="assets/droid-closed-loop.png" alt="DROID GPT visual closed loop" width="420"> | Loule — <a href="https://www.rednote.com/discovery/item/6a9fc0710000000029015578?source=webshare&xhsshare=pc_web&xsec_token=ABMaVBcBS54ctuQIxmhMJMZSAU7Wspgd3bmCnb4tQqHsU=&xsec_source=pc_share">Original post</a> | Real-arm bread pick and place using end-effector poses |
 | <img src="assets/multi-arm-lab.png" alt="Multiple robot arms" width="420"> | 虽然不但是 — <a href="https://www.rednote.com/discovery/item/6a9bd4c80000000028037f67?source=webshare&xhsshare=pc_web&xsec_token=ABLUcokp8Tzdy13Avv1khxst1pWqWBaR7JLjQhUhWsSs4=&xsec_source=pc_share">Original post</a> | Piper pick and place with GPT-6 and RealSense |
-| [Interactive demo](https://qinengwang-aiden.github.io/demos/constraint_demos/) | Qineng Wang — [Original post](https://x.com/qineng_wang/status/2099893504658866561)<br>[Methods and evidence](https://qinengwang-aiden.github.io/demos/constraint_demos/methods.html) | GPT-6 Astra spatial-constraint demonstrations: unlocking interlocked parts and threading a rope through three rings in Dual ALOHA simulation/replay; author-reported demonstration, not physical-hardware validation |
+| <a href="https://qinengwang-aiden.github.io/demos/constraint_demos/"><img src="assets/qineng-constraint-demo.png" alt="GPT-6 Astra Dual ALOHA interlocked-pair constraint demo" width="420"></a> | Qineng Wang — [Original post](https://x.com/qineng_wang/status/2099893504658866561)<br>[Methods and evidence](https://qinengwang-aiden.github.io/demos/constraint_demos/methods.html)<br>[Interactive demo](https://qinengwang-aiden.github.io/demos/constraint_demos/) | GPT-6 Astra spatial-constraint demonstrations: unlocking interlocked parts and threading a rope through three rings in Dual ALOHA kinematic replay; the page describes pregrasped motion with ideal grasps, so this is not physical-hardware validation |
 
 Demonstrations can be expanded into full entries when supporting code or technical details become available.
 
