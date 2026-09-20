@@ -18,6 +18,32 @@ Entries identify the robot or simulator, execution interface, available code or 
 
 ## Robot-arm projects
 
+### SafeHarness — Coding Agents with an Obstacle-Aware Harness for Safe Robot Manipulation
+
+SafeHarness adds two safety mechanisms to a coding-agent manipulation harness: it plans and geometrically verifies waypoint routes with replanning, and selects obstacle-aware contact poses for grasping and placement. On the SafeLIBERO simulation benchmark, the authors report 71.9% task success and 87.5% collision avoidance over 32 tasks with 10 seeds each, using GPT-6 with a frozen `π₀.₅` policy and Harness VLA skills. In the same-agent ablation, adding SafeHarness raises task success from 31.0% to 71.9% and collision avoidance from 59.0% to 87.5%. This is simulation evidence, not a real-robot result; 12.5% of episodes still displaced the obstacle. The paper does not currently link a public implementation.
+
+**Source:** [Paper](https://arxiv.org/abs/2609.20822) · [Full text](https://arxiv.org/html/2609.20822v1)
+
+<p align="center"><a href="https://arxiv.org/abs/2609.20822"><img src="assets/safeharness.png" alt="SafeHarness obstacle-aware route planning and contact execution with SafeLIBERO task-success and collision-avoidance comparisons" width="900"></a></p>
+
+*Figure: SafeHarness route-planning and contact-execution examples and reported SafeLIBERO results. Image provided by the contributor; performance figures are author-reported simulation results.*
+
+### RoboDawn — Transferring the Intelligence of VLMs to Robotic Control
+
+RoboDawn gives a frozen VLM a compact interface of discrete translation, rotation, and gripper commands, then uses visual observations and execution feedback for closed-loop manipulation. The authors report 73.6% success for GPT-6 Astra with one in-context demonstration versus 53.2% zero-shot on RoboTwin 2.0 C2R, and 47.17% versus 35.67% on RoboDojo. The technical report also describes zero-shot physical trials on Franka (9/10 block-in-basket, 5/10 block stacking) and dual Piper cloth folding (0/10). These are author-reported results; code is marked as forthcoming, and the real-robot trial counts are small.
+
+**Source:** [Project and technical report](https://robodawn.top/) · [Recorded episodes and results](https://robodawn.top/results/) · [Report PDF](https://robodawn.top/RoboDawn.pdf)
+
+<p align="center"><a href="https://robodawn.top/results/"><img src="assets/robodawn.png" alt="RoboDawn GPT-6 Astra RoboDojo simulation record with agent trace and wrist-camera observations" width="900"></a></p>
+
+*Figure: RoboDawn simulation recording showing the task scene, agent trace, tool call, and observation views. Screenshot provided by the contributor.*
+
+### Agent as Policy for Robotic Manipulation (AGP)
+
+AGP places task planning and execution under a general-purpose coding agent: it reads robot-camera observations and state, writes and runs programs, issues Cartesian or joint-space commands through a documented interface, and revises actions from physical feedback. On an I2RT YAM setup, the authors report 57 successful trials out of 62 across eight main-result configurations; a separate released dataset contains 162 real-robot trials and should not be conflated with that headline evaluation. The results are author-reported and each configuration has limited trials; the project publishes per-trial material for inspection.
+
+**Source:** [Project page and results](https://agent-as-policy-2026.github.io/) · [Paper](https://arxiv.org/abs/2609.12541) · [Code](https://github.com/agent-as-policy-2026/agent-as-policy) · [Trial dataset](https://huggingface.co/datasets/Agent-as-Policy/agent-as-policy)
+
 ### GPT-6 Astra as an Embodied Policy
 
 A comparative study of GPT-6 Astra as a direct robot policy and as a high-level reviewer or correction layer for the learned `π₀.₅` policy. The public evaluation covers RoboDojo tasks and compares direct end-effector control with hybrid System-2 reasoning plus System-1 sensorimotor skills. The repository reports Astra Direct at 26% success with a mean score of 37.81, and the hybrid policy at 48% success with a mean score of 62.60; GPT corrections were applied to 14.4% of executed control steps. These are author-reported evaluation results across selected cases, not evidence of general robot competence, and the public release does not represent every deployment or evaluation artifact.
@@ -94,12 +120,13 @@ GPT-6 Astra plans and calls motion skills through Inspect Robots on real YAM arm
 
 Tools for connecting or evaluating robot agents.
 
+- [RoboDojo](https://github.com/RoboDojo-Benchmark/RoboDojo) — an evaluation-only sim-and-real manipulation benchmark with 42 simulation tasks and 18 physical-robot tasks across three embodiments. The September 16–17, 2026 maintenance update corrected an observation-frame discrepancy and RGB byte-channel ordering; the maintainers report reruns left results essentially unchanged. Use XPolicyLab commit `bb9a0b5` or later for the aligned RGB ordering.
 - [FailBench](https://arxiv.org/abs/2609.03611) — benchmark for VLM-based robot failure detection; tests whether VLMs can judge manipulation success across diverse real and simulated sources. The best reported mean balanced accuracy is 0.77, with performance near chance on contact-intensive tasks.
 - [ENACT](https://enact-embodied-cognition.github.io/) — benchmark and dataset for evaluating VLM embodied cognition through forward and inverse world modeling of egocentric interaction. It includes code, data, a viewer, and a leaderboard; its scope is broader mobile manipulation and world modeling rather than a robot-arm execution interface.
-- [Inspect Robots](https://github.com/robocurve/inspect-robots) — connects an agent or policy to a robot, task, and run logs. Its mock quick start checks the pipeline, not physical manipulation; see the [LLM-agent guide](https://github.com/robocurve/inspect-robots#drive-the-robot-with-an-llm).
+- [Inspect Robots](https://github.com/robocurve/inspect-robots) — connects an agent or policy to a robot, task, and run logs. Version 0.58.0 adds on-demand camera mode for agents, exposes affirmative operator verdicts as a public scorer API, and improves validation and retention of rollout/evaluation logs. Its mock quick start checks the pipeline, not physical manipulation; see the [LLM-agent guide](https://github.com/robocurve/inspect-robots#drive-the-robot-with-an-llm) and [v0.58.0 release notes](https://github.com/robocurve/inspect-robots/releases/tag/v0.58.0).
 - [ROS MCP Server](https://github.com/robotmcp/ros-mcp-server) — exposes ROS topics, services, and actions to an MCP client. It provides an interface, not the robot controller itself.
-- [StationeryBench](https://github.com/robocurve/stationerybench) — a benchmark and scoring protocol for bimanual stationery tasks. Its scripted mock is not a robot success result.
-- [FluxVLA](https://github.com/FluxVLA/FluxVLA) — a VLA platform for simulation and real-robot deployment. Here it is the low-level policy/backend associated with the Jikun lead, not the LLM agent itself.
+- [StationeryBench](https://github.com/robocurve/stationerybench) — five bimanual desk-manipulation tasks (uncap a marker, retrieve an eraser, extract a sticky pad, pour paper clips, and hand over a ruler), with setup references, human demos, checklists, and 20-episode real-YAM run instructions. Built on Inspect Robots for both VLA and LLM-agent policies. The included mock has no physics, and its scripted oracle uses privileged state; neither is evidence of a model's physical manipulation ability. The package's binary operator score differs from the staged video grading in the associated report.
+- [FluxVLA](https://github.com/FluxVLA/FluxVLA) — a VLA training, evaluation, and deployment platform used as a low-level policy/backend in some agent workflows, not an LLM agent itself. September 2026 updates add GPT-6 inference and checkpoint-free LIBERO evaluation, native GR00T N1.7 training/evaluation, and horizon-aligned RoboCasa action denormalization. These are platform capabilities; they do not establish LLM-agent performance or new physical-robot results.
 
 ## Further reading
 
