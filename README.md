@@ -18,6 +18,16 @@ Entries identify the robot or simulator, execution interface, available code or 
 
 ## Robot-arm projects
 
+### ARSTAG — An Agentic Real2Sim2Real System for Task-Specific Robot Data Generation
+
+ARSTAG uses a hierarchy of language agents to turn a single RGB image and a natural-language instruction into task-scoped simulation scenes, robot-feasible demonstrations, and task-consistent data expansion. A coordinator agent manages feedback and recovery across the pipeline. The paper reports sim-to-real transfer across seven grasping, placement, and stacking tasks on a dual-arm robot, with `π₀.₅` reaching a reported 74.6% average real-world success rate. This is author-reported research evidence; the result is for generated-data-assisted visuomotor policies rather than direct LLM control of the robot, and the public release should be checked for exact hardware, data-generation settings, and evaluation artifacts.
+
+**Source:** [Paper](https://arxiv.org/abs/2609.24563) · [Project page](https://boweili666.github.io/ARSTAG/)
+
+<p align="center"><a href="https://boweili666.github.io/ARSTAG/"><img src="assets/arstag.png" alt="ARSTAG simulation demonstrations and real-robot execution across seven manipulation tasks" width="900"></a></p>
+
+*Figure: ARSTAG supplementary-video overview comparing simulation demonstrations with real-robot execution across task-specific manipulation tasks. User-provided image based on the project presentation.*
+
 ### SafeHarness — Coding Agents with an Obstacle-Aware Harness for Safe Robot Manipulation
 
 SafeHarness adds two safety mechanisms to a coding-agent manipulation harness: it plans and geometrically verifies waypoint routes with replanning, and selects obstacle-aware contact poses for grasping and placement. On the SafeLIBERO simulation benchmark, the authors report 71.9% task success and 87.5% collision avoidance over 32 tasks with 10 seeds each, using GPT-6 with a frozen `π₀.₅` policy and Harness VLA skills. In the same-agent ablation, adding SafeHarness raises task success from 31.0% to 71.9% and collision avoidance from 59.0% to 87.5%. This is simulation evidence, not a real-robot result; 12.5% of episodes still displaced the obstacle. The paper does not currently link a public implementation.
@@ -27,6 +37,16 @@ SafeHarness adds two safety mechanisms to a coding-agent manipulation harness: i
 <p align="center"><a href="https://arxiv.org/abs/2609.20822"><img src="assets/safeharness.png" alt="SafeHarness obstacle-aware route planning and contact execution with SafeLIBERO task-success and collision-avoidance comparisons" width="900"></a></p>
 
 *Figure: SafeHarness route-planning and contact-execution examples and reported SafeLIBERO results. Image provided by the contributor; performance figures are author-reported simulation results.*
+
+### Teach and Grow — An Agent-Centered Architecture for General Robot Learning
+
+Teach-and-Grow Learning (TGL) turns a few successful demonstrations into reusable closed-loop Skill Blocks. A multimodal agent retrieves and composes these blocks, grounds them in the current scene, selects robot-native tools or policies, checks physical outcomes, and revises the remaining route. A persistent Skill Library and Experience Memory let the system add local capabilities without task-specific policy retraining. The paper reports LIBERO results and controlled studies of skill induction, save-and-reload, feedback-driven replanning, and local capability growth. The current evidence is primarily simulation-based; no public code or real-robot validation was confirmed in the paper record, and its proposed scaling law remains a hypothesis rather than a longitudinal result.
+
+**Source:** [Paper](https://arxiv.org/abs/2608.17209) · [Full text](https://arxiv.org/html/2608.17209v1)
+
+<p align="center"><a href="https://arxiv.org/abs/2608.17209"><img src="assets/teach-and-grow.png" alt="Teach and Grow reusable robot skills, experience memory, and feedback-driven manipulation" width="900"></a></p>
+
+*Figure: Teach and Grow overview showing reusable skills, experience memory, scene changes, and outcome checking. User-provided image based on the project presentation.*
 
 ### RoboDawn — Transferring the Intelligence of VLMs to Robotic Control
 
@@ -43,6 +63,10 @@ RoboDawn gives a frozen VLM a compact interface of discrete translation, rotatio
 AGP places task planning and execution under a general-purpose coding agent: it reads robot-camera observations and state, writes and runs programs, issues Cartesian or joint-space commands through a documented interface, and revises actions from physical feedback. On an I2RT YAM setup, the authors report 57 successful trials out of 62 across eight main-result configurations; a separate released dataset contains 162 real-robot trials and should not be conflated with that headline evaluation. The results are author-reported and each configuration has limited trials; the project publishes per-trial material for inspection.
 
 **Source:** [Project page and results](https://agent-as-policy-2026.github.io/) · [Paper](https://arxiv.org/abs/2609.12541) · [Code](https://github.com/agent-as-policy-2026/agent-as-policy) · [Trial dataset](https://huggingface.co/datasets/Agent-as-Policy/agent-as-policy)
+
+<p align="center"><a href="https://agent-as-policy-2026.github.io/"><img src="assets/agp-folding.png" alt="Agent as Policy sequential and simultaneous robot manipulation demonstration for folding a blue cloth" width="900"></a></p>
+
+*Figure: AGP demonstration interface showing sequential and simultaneous task variations, human demonstration input, target images, and robot-camera observations during cloth folding. User-provided image based on the project presentation.*
 
 ### GPT-6 Astra as an Embodied Policy
 
