@@ -18,6 +18,12 @@ Entries identify the robot or simulator, execution interface, available code or 
 
 ## Robot-arm projects
 
+### Robot Manipulation with GPT-6-Astra: Body Knowledge, Experience Reuse, Emergent Skills, and Sim2Real Transfer
+
+GPT-6 Astra observes camera images and writes programs against an XLeRobot low-level control API, using robot geometry, synchronized action/state demonstrations, and reusable visual-feedback skills with fixed model weights. In an elevator-button task, the authors report 30 fixed-start simulation trials, 18 trials comparing new starting positions, 27 local-skill simulation trials, and 12 real-robot trials. Simulation assets and experience reduce same-start real-robot mean completion time by 53.0% and 49.9%, respectively. The repository includes prompts, per-trial data, simulation and hardware-control sources, calibration documentation, and offline analysis scripts. This is an arXiv preprint with author-reported results from a narrow task: physical success means operator-confirmed gripper-tip contact, while simulation requires button activation; the reusable skills were refactored by researchers from an agent-generated routine.
+
+**Source:** [arXiv preprint](https://arxiv.org/abs/2609.31770) · [Code, trial data, and demonstrations](https://github.com/hesd10/astra-robot-sim2real)
+
 ### ARSTAG — An Agentic Real2Sim2Real System for Task-Specific Robot Data Generation
 
 ARSTAG uses a hierarchy of language agents to turn a single RGB image and a natural-language instruction into task-scoped simulation scenes, robot-feasible demonstrations, and task-consistent data expansion. A coordinator agent manages feedback and recovery across the pipeline. The paper reports sim-to-real transfer across seven grasping, placement, and stacking tasks on a dual-arm robot, with `π₀.₅` reaching a reported 74.6% average real-world success rate. This is author-reported research evidence; the result is for generated-data-assisted visuomotor policies rather than direct LLM control of the robot, and the public release should be checked for exact hardware, data-generation settings, and evaluation artifacts.

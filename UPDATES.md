@@ -1,5 +1,9 @@
 # Updates
 
+## October 2026
+
+- Added [Robot Manipulation with GPT-6-Astra](https://github.com/hesd10/astra-robot-sim2real), documenting body knowledge, synchronized experience, and reusable feedback skills in simulation and physical XLeRobot trials, with the preprint status and operator-confirmed contact criterion made explicit.
+
 ## September 2026
 
 - Added [ARSTAG](https://arxiv.org/abs/2609.24563), an agentic Real2Sim2Real system that uses language agents to construct task-specific simulation data and coordinate feedback/recovery before transferring generated-data-trained policies to dual-arm manipulation; retained the distinction between agent-driven data generation and direct robot control.
