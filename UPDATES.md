@@ -2,6 +2,7 @@
 
 ## October 2026
 
+- Added [Spotter](https://arxiv.org/abs/2609.36808), where a frozen VLA leads execution while a local screener watches in parallel and a VLM judge is called only to repair confirmed errors before handing control back.
 - Added [Robot Manipulation with GPT-6-Astra](https://github.com/hesd10/astra-robot-sim2real), documenting body knowledge, synchronized experience, and reusable feedback skills in simulation and physical XLeRobot trials, with the preprint status and operator-confirmed contact criterion made explicit.
 
 ## September 2026

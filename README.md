@@ -18,6 +18,16 @@ Entries identify the robot or simulator, execution interface, available code or 
 
 ## Robot-arm projects
 
+### Spotter — Let the Embodied Model Lead, and the VLM Reflect for It
+
+Spotter keeps a frozen VLA (π0.5 or Cosmos Policy) executing while a local Qwen screener checks each action chunk in parallel. A VLM judge (local Qwen or GPT-6 Astra) is called only to confirm a suspected error, repair it with a short plan of motion primitives such as move, lift, rotate wrist, set gripper, or retreat to a recorded pose, then verify the fix and hand control back to the policy. The authors report raising π0.5 from 53% to 83% on a Franka Research 3 arm (30 trials over three tasks, GPT-6 Astra judge with one example), and, on 150 RoboTwin 2.0 episodes with released logs, matching an Astra-led agent's 56% success at 72 s versus 155 s per successful episode. Repairs assume the scene is still recoverable; errors such as an object falling out of view remain out of scope.
+
+**Source:** [Paper](https://arxiv.org/abs/2609.36808) · [Project page](https://zqc3117.github.io/Spotter/) · [Code and per-episode logs](https://github.com/zqc3117/Spotter)
+
+<p align="center"><a href="https://zqc3117.github.io/Spotter/"><img src="assets/spotter.jpg" alt="Spotter real-robot cup stacking: the screener flags fingers straddling the rim, the judge plans a small nudge, the grasp recovers, and the task completes" width="900"></a></p>
+
+*Figure: Spotter real-robot cup-stacking run in which the local screener flags an off-centre grasp, the local Qwen judge plans a small nudge, and the policy completes the task. Image provided by a paper author; results are author-reported.*
+
 ### Robot Manipulation with GPT-6-Astra: Body Knowledge, Experience Reuse, Emergent Skills, and Sim2Real Transfer
 
 GPT-6 Astra observes camera images and writes programs against an XLeRobot low-level control API, using robot geometry, synchronized action/state demonstrations, and reusable visual-feedback skills with fixed model weights. In an elevator-button task, the authors report 30 fixed-start simulation trials, 18 trials comparing new starting positions, 27 local-skill simulation trials, and 12 real-robot trials. Simulation assets and experience reduce same-start real-robot mean completion time by 53.0% and 49.9%, respectively. The repository includes prompts, per-trial data, simulation and hardware-control sources, calibration documentation, and offline analysis scripts. This is an arXiv preprint with author-reported results from a narrow task: physical success means operator-confirmed gripper-tip contact, while simulation requires button activation; the reusable skills were refactored by researchers from an agent-generated routine.
